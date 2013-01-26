@@ -13,6 +13,8 @@ class Links extends CI_Controller {
         if($link === FALSE) {
             show_404 ();
         } else {
+            $this->load->model('hits_model');
+            $this->hits_model->addHit($link->linkid);
             redirect($link->url);
         }
     }
