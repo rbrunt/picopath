@@ -6,11 +6,18 @@ class Links extends CI_Controller {
         parent::__construct();
     }
 
-    public function index() {
-		$this->load->model('links_model');
-		$this->load->view('header');
-		$this->load->view('homepage', array('links' => $this->links_model->getLinks()));
-		$this->load->view('footer');
-	}
+    public function index($name) {
+        $this->load->model('links_model');
+        $link   = $this->links_model->getLinkByName($name);
+        if($link === FALSE) {
+            show_404 ();
+        } else {
+            redirect($link->url);
+        }
+    }
+    
+    public function addlink() {
+        $url    = $this->input->post('url');
+    }
 
 }

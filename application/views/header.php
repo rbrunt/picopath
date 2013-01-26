@@ -27,9 +27,10 @@
 					<li<?php if (isset($tab) && $tab == 'account') { ?> class="current-menu-item"<?php } ?>>
 						<a href="/account">account</a>
 						<ul>
-							<li><a href="/users/loginform/">&raquo; login</a></li>
+							<li><a href="/users/loginform/">&raquo; log in</a></li>
 							<li><a href="#">&raquo; submit a link</a></li>
 							<li><a href="/users/home/">&raquo; my account</a></li>
+                                                        <li><a href="/users/logout/">&raquo; log out</a></li>
 						</ul>
 					</li>
 					<li<?php if (isset($tab) && $tab == 'statistics') { ?> class="current-menu-item"<?php } ?>><a href="/statistics">stats</a></li>
