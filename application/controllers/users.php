@@ -13,7 +13,9 @@ class Users extends CI_Controller {
         if($user === FALSE) redirect ('users/loginform/');
         //Else show user home
         $this->load->view('header', array('tab' => 'account'));
-        $this->load->view('user_home', array('email' => $user->email, 'register' => $register));
+        $this->load->model('links_model');
+        $links  = $this->links_model->getLinksByUser($user->userid);
+        $this->load->view('user_home', array('email' => $user->email, 'links' => $links, 'register' => $register));
         $this->load->view('footer');
     }
 
