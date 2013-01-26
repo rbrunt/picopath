@@ -49,20 +49,18 @@ class Users_Model extends CI_Model {
 
     public function addUser($email, $password) {
         $email    = $this->db->escape($email);
-        $password = $this->db->escape($password);
         $salt     = md5(mt_rand(0, mt_getrandmax()));
         $password = md5($password . $salt);
-        $this->db->query("INSERT INTO users SET email = $email, password = $password, salt = $salt, ip = '" . $_SERVER['REMOTE_ADDR'] . "'");
+        $this->db->query("INSERT INTO users SET email = $email, password = '$password', salt = '$salt', ip = '" . $_SERVER['REMOTE_ADDR'] . "'");
         return $this->db->insert_id();
     }
 
     public function updateUser($userid, $email, $password) {
         $userid   = $this->db->escape($userid);
         $email    = $this->db->escape($email);
-        $password = $this->db->escape($password);
         $salt     = md5(mt_rand(0, mt_getrandmax()));
         $password = md5($password . $salt);
-        $this->db->query("UPDATE users SET email = $email, password = $password, salt = $salt WHERE userid = $userid LIMIT 1");
+        $this->db->query("UPDATE users SET email = $email, password = '$password', salt = '$salt' WHERE userid = $userid LIMIT 1");
         return $this->db->affected_rows();
     }
 

@@ -29,7 +29,7 @@
 						<ul>
 							<li><a href="/users/loginform/">&raquo; login</a></li>
 							<li><a href="#">&raquo; submit a link</a></li>
-							<li><a href="#">&raquo; my account</a></li>
+							<li><a href="/users/home/">&raquo; my account</a></li>
 						</ul>
 					</li>
 					<li<?php if (isset($tab) && $tab == 'statistics') { ?> class="current-menu-item"<?php } ?>><a href="/statistics">stats</a></li>
