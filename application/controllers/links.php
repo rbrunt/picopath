@@ -32,5 +32,9 @@ class Links extends CI_Controller {
         $name = $this->links_model->addLink($url, $userid, $name);
         echo ($name !== false) ? $name : "false";
     }
+    
+    public function getlink($name = '') {
+        if($this->links_model->getLinkByName($name) !== false) die("true");
+    }
 
 }

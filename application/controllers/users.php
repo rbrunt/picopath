@@ -12,7 +12,8 @@ class Users extends CI_Controller {
         $user   = $this->users_model->checkLogin();
         if($user === FALSE) redirect ('users/loginform/');
         //Else show user home
-        $this->load->view('header', array('tab' => 'account'));
+        $loggedin = ($this->users_model->checkLogin() !== false);
+        $this->load->view('header', array('loggedin' => $loggedin, 'tab' => 'account'));
         $this->load->model('links_model');
         $this->load->model('hits_model');
         $links  = $this->links_model->getLinksByUser($user->userid);
@@ -27,6 +28,7 @@ class Users extends CI_Controller {
             }
         }
         $this->load->view('user_home', array('email' => $user->email, 'links' => $linksarray, 'register' => $register));
+        $this->load->view('link_form', array('loggedin' => $loggedin));
         $this->load->view('footer');
     }
 
@@ -41,7 +43,8 @@ class Users extends CI_Controller {
         //If already loggedin redirect to user home
         $user   = $this->users_model->checkLogin();
         if($user !== FALSE) redirect ('users/home/');
-        $this->load->view('header', array('tab' => 'account'));
+        $loggedin = ($this->users_model->checkLogin() !== false);
+        $this->load->view('header', array('loggedin' => $loggedin, 'tab' => 'account'));
         $this->load->view('login', array('email' => $email));
         $this->load->view('footer');
     }
@@ -71,8 +74,16 @@ class Users extends CI_Controller {
         //If already loggedin redirect to user home
         $user   = $this->users_model->checkLogin();
         if($user !== FALSE) redirect ('users/home/');
-        $this->load->view('header', array('tab' => 'account'));
+        $loggedin = ($this->users_model->checkLogin() !== false);
+        $this->load->view('header', array('loggedin' => $loggedin, 'tab' => 'account'));
         $this->load->view('register', array('email' => $email));
+        $this->load->view('footer');
+    }
+    
+    public function submitlink(){
+        $loggedin = ($this->users_model->checkLogin() !== false);
+        $this->load->view('header', array('loggedin' => $loggedin, 'tab' => 'account'));
+        $this->load->view('link_form', array('loggedin' => $loggedin));
         $this->load->view('footer');
     }
 }
