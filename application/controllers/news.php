@@ -8,7 +8,8 @@ class News extends CI_Controller {
 
     public function index() {
 		$this->load->model('links_model');
-		$this->load->view('header', array('Tab' => 'news'));
+                $loggedin = ($this->users_model->checkLogin() !== false);
+		$this->load->view('header', array('loggedin' => $loggedin, 'tab' => 'news'));
 		$this->load->view('homepage', array('links' => $this->links_model->getLinks()));
 		$this->load->view('footer');
 	}

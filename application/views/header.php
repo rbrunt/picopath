@@ -31,7 +31,7 @@
 							<?php if($loggedin==false){?>
                                                         <li><a href="/users/loginform/">&raquo; log in</a></li>
                                                         <?php }else{?>
-							<li><a href="#">&raquo; submit a link</a></li>
+							<li><a href="/users/submitlink/">&raquo; submit a link</a></li>
 							<li><a href="/users/home/">&raquo; my account</a></li>
                                                         <li><a href="/users/logout/">&raquo; log out</a></li>
                                                         <?php }?>
