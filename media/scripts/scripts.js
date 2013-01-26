@@ -7,3 +7,14 @@ function addLink() {
         }
     });
 }
+
+function checkLink() {
+    $.get("/links/getlink/"+$("#name").val(), function (taken){
+        if (taken === 'true') {
+            $('#taken').html("That name is already taken");
+        }else{
+            $('#taken').html('Available!');
+        }
+        
+    });
+}

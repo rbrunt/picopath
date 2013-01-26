@@ -7,7 +7,8 @@
     <button onclick="addLink(); return false;">Add Link</button>
     <?php if($loggedin){ ?>
     <div>
-        Custom Shortlink (optional): http://picopath.com/<input type='text' name='name' id='name' size='10'>
+        Custom Shortlink (optional): http://picopath.com/<input type='text' name='name' id='name' size='10' onkeyup="checkLink();">
+        <div id='taken'></div>
     </div>
     <?php }?>
 </div>
