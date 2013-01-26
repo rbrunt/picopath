@@ -11,7 +11,7 @@ class Home extends CI_Controller {
         $this->load->model('users_model');
         $loggedin = ($this->users_model->checkLogin() !== false);
         $this->load->view('header', array('loggedin' => $loggedin, 'tab' => 'home'));
-        $this->load->view('homepage', array('links' => $this->links_model->getLinks()));
+        $this->load->view('homepage', array('loggedin' => $loggedin, 'links' => $this->links_model->getLinks()));
         $this->load->view('footer');
     }
 

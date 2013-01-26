@@ -9,6 +9,7 @@
 	<script src="/media/scripts/jquery-1.6.1.min.js" type="text/javascript"></script>
 	<script src="/media/scripts/jquery.nivo.slider.pack.js" type="text/javascript"></script>
 	<script src="/media/scripts/blanka.js" type="text/javascript"></script>
+        <script src="/media/scripts/scripts.js" type="text/javascript"></script>
 </head>
 <body>
 	<div id="header">
