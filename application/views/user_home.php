@@ -9,10 +9,8 @@
     <h4>Here's your links</h4>
     <ul>
     <?php
-        if($links !== false){
-            foreach($links->result() as $link){
-                echo "<li><a href='/".$link->name."'>picopath.com/".$link->name."</a> - <a href='".$link->url."'>".$link->url."</a></li>";
-            }
+        foreach($links as $link){
+            echo "<li><a href='/".$link['name']."'>picopath.com/".$link['name']."</a> - <a href='".$link['url']."'>".$link['url']."</a> - Hits: ".$link['hits']."</li>";
         }
     ?>
     </ul>
