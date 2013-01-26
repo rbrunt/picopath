@@ -13,7 +13,20 @@ class Users extends CI_Controller {
         if($user === FALSE) redirect ('users/loginform/');
         //Else show user home
         $this->load->view('header', array('tab' => 'account'));
-        $this->load->view('user_home', array('email' => $user->email, 'register' => $register));
+        $this->load->model('links_model');
+        $this->load->model('hits_model');
+        $links  = $this->links_model->getLinksByUser($user->userid);
+        $linksarray = array();
+        if ($links !== false) {
+            foreach ($links->result() as $link) {
+                $linksarray[] = array(
+                    'name' => $link->name,
+                    'url'  => $link->url,
+                    'hits' => $this->hits_model->hitCount($link->linkid),
+                );
+            }
+        }
+        $this->load->view('user_home', array('email' => $user->email, 'links' => $linksarray, 'register' => $register));
         $this->load->view('footer');
     }
 

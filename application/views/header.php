@@ -25,7 +25,7 @@
 				<ul>
 					<li<?php if (isset($tab) && $tab == 'home') { ?> class="current-menu-item"<?php } ?>><a href="/home">home</a></li>
 					<li<?php if (isset($tab) && $tab == 'account') { ?> class="current-menu-item"<?php } ?>>
-						<a href="/account">account</a>
+						<a href="/users/home/">account</a>
 						<ul>
 							<li><a href="/users/loginform/">&raquo; log in</a></li>
 							<li><a href="#">&raquo; submit a link</a></li>

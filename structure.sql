@@ -48,3 +48,21 @@ CREATE TABLE `users` (
   PRIMARY KEY (`userid`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hits`
+--
+
+CREATE TABLE IF NOT EXISTS `hits` (
+  `hitid` int(11) NOT NULL AUTO_INCREMENT,
+  `linkid` int(11) NOT NULL,
+  `userid` int(11) NOT NULL,
+  `ip` varchar(23) NOT NULL,
+  `referrer` varchar(500) NOT NULL,
+  `useragent` varchar(300) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`hitid`),
+  KEY `linkid` (`linkid`,`userid`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
