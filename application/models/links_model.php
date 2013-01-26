@@ -20,6 +20,11 @@ class Links_Model extends CI_Model {
         $links = $this->db->query("SELECT * FROM links");
         return ($links->num_rows() > 0) ? $links : false;
     }
+    
+    public function getLinksByUser($userid) {
+        $links = $this->db->query("SELECT * FROM links WHERE UserID='$userid'");
+        return ($links->num_rows() > 0) ? $links : false;
+    }
 
     public function addLink($url, $name = "", $userid = 0) {
         //If not logged in or no name defined
