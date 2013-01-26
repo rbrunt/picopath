@@ -15,5 +15,9 @@ class Links extends CI_Controller {
             redirect($link->url);
         }
     }
+    
+    public function addlink() {
+        $url    = $this->input->post('url');
+    }
 
 }

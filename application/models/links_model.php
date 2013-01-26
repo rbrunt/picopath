@@ -21,12 +21,21 @@ class Links_Model extends CI_Model {
         return ($links->num_rows() > 0) ? $links : false;
     }
 
-    public function addLink($userid, $name, $url) {
+    public function addLink($url, $name = "", $userid = 0) {
+        //If not logged in or no name defined
+        if($userid == 0 || $name == ""){
+            //Generate a new name until a unique one found
+            while(TRUE){
+                $name       = trim(base64_encode(mt_rand(0, mt_getrandmax())),"=");
+                $duplicate  = getLinkByName($name);
+                if($duplicate === FALSE) break;
+            }
+        }
         $userid = $this->db->escape($userid);
         $name   = $this->db->escape(strtolower($name));
         $url    = $this->db->escape($url);
         $this->db->query("INSERT INTO links SET userid = $userid, name = $name, url = $url");
-        return $this->db->insert_id();
+        return $name;
     }
 
     public function updateLink($linkid, $userid, $name, $url) {
