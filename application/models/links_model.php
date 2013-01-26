@@ -16,6 +16,11 @@ class Links_Model extends CI_Model {
         return ($link->num_rows() > 0) ? $link->row() : false;
     }
 
+    public function getLinkByURL($url) {
+        $link = $this->db->query("SELECT * FROM links WHERE url = " . $this->db->escape($url));
+        return ($link->num_rows() > 0) ? $link->row() : false;
+    }
+
     public function getLinks() {
         $links = $this->db->query("SELECT * FROM links");
         return ($links->num_rows() > 0) ? $links : false;
@@ -26,21 +31,28 @@ class Links_Model extends CI_Model {
         return ($links->num_rows() > 0) ? $links : false;
     }
 
-    public function addLink($url, $name = "", $userid = 0) {
+    public function addLink($url, $userid = 0, $name = "") {
         //If not logged in or no name defined
-        if($userid == 0 || $name == ""){
+        if($userid == 0 || $name == "" || $name == false) {
+            //check to see if we can reuse an existing link / name
+            $existing = $this->getLinkByURL($url);
+            if ($existing !== false) return $existing->name;
             //Generate a new name until a unique one found
-            while(TRUE){
-                $name       = trim(base64_encode(mt_rand(0, mt_getrandmax())),"=");
-                $duplicate  = getLinkByName($name);
+            while (true) {
+                $name      = str_replace(array('=', '+', '/'), '', base64_encode(mt_rand(0, mt_getrandmax())));
+                $name      = substr($name, 0, MAX_LINK_SIZE);
+                $duplicate = $this->getLinkByName($name);
                 if($duplicate === FALSE) break;
             }
+        } elseif ($name != "") {
+            $duplicate = $this->getLinkByName($name);
+            if($duplicate !== FALSE) return false;
         }
         $userid = $this->db->escape($userid);
         $name   = $this->db->escape(strtolower($name));
         $url    = $this->db->escape($url);
         $this->db->query("INSERT INTO links SET userid = $userid, name = $name, url = $url");
-        return $name;
+        return trim($name, "'");
     }
 
     public function updateLink($linkid, $userid, $name, $url) {

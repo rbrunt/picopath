@@ -1,4 +1,16 @@
 
+            <script type="text/javascript">
+                function addLink() {
+                    $.post("/links/addlink", {url: $("#url").val()}, function(name) {
+                        if (name == 'false') {
+                            $("#message").fadeIn();
+                        } else {
+                            $("#addlink").html("Your link has been added. Go to: <a href='/" + name + "'>http://picopath.com/" + name + "</a>");
+                        }
+                    });
+                }
+            </script>
+
 			<div id="logo" class="section logo">
 				<h1>
 					<a href="#">
@@ -18,10 +30,9 @@
 
 			<h2><span>Add A Link</span></h2>
 
-			<div class="section" style="margin-top: 40px; text-align: center;">
-                <form method="post" action="/links/addLink">
-                    URL:
-                    <input type="text" name="url" size="40">
-                    <input type="submit" value="Add Link">
-                </form>
+			<div id="addlink" class="section" style="margin-top: 40px; text-align: center;">
+    			<div id="message" style="text-align: center; display: none;"><b style='color: red;'>Could not add this link.</b></div>
+                URL:
+                <input type="text" name="url" id="url" size="40">
+                <button onclick="addLink(); return false;">Add Link</button>
 			</div>
