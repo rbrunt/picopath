@@ -30,6 +30,11 @@ class Users extends CI_Controller {
         $this->load->view('footer');
     }
     
+    public function logout(){
+        $this->users_model->logOut();
+        redirect('/');
+    }
+
     public function register() {
         $email      = $this->input->post('email');
         $password   = $this->input->post('password');
