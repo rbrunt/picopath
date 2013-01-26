@@ -37,5 +37,17 @@ define('FOPEN_WRITE_CREATE_STRICT',				'xb');
 define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
 
+/*
+|--------------------------------------------------------------------------
+| Link Settings
+|--------------------------------------------------------------------------
+|
+| How big links are allowed to be
+|
+*/
+
+define('MAX_LINK_SIZE',     5);
+
+
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
