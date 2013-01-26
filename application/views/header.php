@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<title>Home - Blanka</title>
+	<title>Home - PicoPath</title>
 	<link rel="stylesheet" href="media/styles/main.css" type="text/css" />
 	<link rel="stylesheet" href="media/styles/nivo-slider.css" type="text/css" />
 	<!--[if lte IE 8]><link rel="stylesheet" href="media/styles/ie.css" type="text/css" /><![endif]-->

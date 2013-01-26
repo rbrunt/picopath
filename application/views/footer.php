@@ -6,9 +6,7 @@
 	<div id="footer">
 		<div class="inner">
 			<p>
-				<span>&copy; 2011 by <a href="#">Blanka</a></span>
-				<span>All rights reserved.</span>
-				<span>Designed by <a href="http://highonpixels.com">High on Pixels</a> team.</span>
+				<span>&copy; 2013 by <a href="#">PicoPath</a>. All rights reserved.</span>
 			</p>
 		</div>
 	</div>
