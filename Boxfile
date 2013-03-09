@@ -1,0 +1,13 @@
+web1:
+  name: picopath
+  shared_writable_dirs: 
+    - application/cache
+    - application/logs
+  php_extensions:
+    - mysqli
+    - mysql
+  after_build:
+    # Move pagoda config file to app/config
+    - "mv pagoda/database.php application/config/database.php"
+db1:
+  name: database
