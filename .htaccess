@@ -1,3 +1,7 @@
 RewriteEngine on
 RewriteCond $1 !^(index\.php|media|favicon\.ico|robots\.txt)
 RewriteRule ^(.*)$ /index.php/$1 [L]
+
+RewriteEngine On
+RewriteCond %{HTTP:X-Forwarded-Proto} =http
+RewriteRule (.*) https://%{HTTP_HOST}/$1 [R]
